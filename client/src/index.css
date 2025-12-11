@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-slate-50 text-slate-900 antialiased;
+    background: 
+      radial-gradient(circle at 18% 18%, rgba(139, 92, 246, 0.08), transparent 26%),
+      radial-gradient(circle at 82% 10%, rgba(124, 58, 237, 0.08), transparent 30%),
+      linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #f5f3ff 100%);
+    @apply min-h-screen;
+  }
+
+  ::selection {
+    @apply bg-primary-500/20 text-primary-900;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-soft;
+  }
+  
+  .glass-panel {
+    @apply bg-white/60 backdrop-blur-md border border-white/40 shadow-sm;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-500/10 hover:border-primary-200/50;
+  }
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 9999px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.5);
+  }
+
+  .surface {
+    @apply bg-white border border-slate-200 shadow-soft;
+  }
+
+  .surface-hover {
+    @apply hover:bg-slate-50 transition-colors duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wide;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-400;
+  }
+}
