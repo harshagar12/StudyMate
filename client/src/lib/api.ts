@@ -1,6 +1,18 @@
 import { supabase } from './supabase';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+// Helper to ensure API URL always ends with /api
+const getApiUrl = () => {
+    let url = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+    // Remove trailing slash
+    url = url.replace(/\/$/, '');
+    // Append /api if missing
+    if (!url.endsWith('/api')) {
+        url += '/api';
+    }
+    return url;
+};
+
+const API_URL = getApiUrl();
 
 async function fetchWithAuth(endpoint: string, options: RequestInit = {}) {
   const { data: { session } } = await supabase.auth.getSession();
