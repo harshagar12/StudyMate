@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { api } from '../lib/api';
-import { Save, Check, Loader2, Bold, Italic, List } from 'lucide-react';
+import { Check, Loader2, Bold, Italic, List } from 'lucide-react';
 
 interface Props {
   subjectId: string;

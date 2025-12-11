@@ -127,7 +127,7 @@ export default function Dashboard() {
               )}
 
               <div className="space-y-2.5 overflow-y-auto custom-scrollbar pr-1 flex-1 animate-in slide-in-from-left-4 fade-in duration-500 delay-100">
-                {terms.map((term, index) => (
+                {terms.map((term) => (
                   <div
                     key={term.id}
                     onClick={() => {
