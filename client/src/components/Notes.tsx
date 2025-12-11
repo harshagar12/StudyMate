@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { api } from '../lib/api';
-import { Check, Loader2, Bold, Italic, List } from 'lucide-react';
+import { Check, Loader2 } from 'lucide-react';
 
 interface Props {
   subjectId: string;
@@ -14,33 +14,7 @@ export default function Notes({ subjectId }: Props) {
   const timeoutRef = useRef<NodeJS.Timeout>();
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  const insertFormat = (startTag: string, endTag: string) => {
-    const textarea = textAreaRef.current;
-    if (!textarea) return;
 
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const text = textarea.value;
-    const before = text.substring(0, start);
-    const selection = text.substring(start, end);
-    const after = text.substring(end);
-
-    const newContent = `${before}${startTag}${selection}${endTag}${after}`;
-    setContent(newContent);
-    handleSave(newContent); // Auto-save on format
-
-    // Restore cursor / selection
-    // We want to select the text inside the tags if there was a selection, 
-    // or place cursor between tags if empty
-    setTimeout(() => {
-        textarea.focus();
-        if (selection) {
-            textarea.setSelectionRange(start + startTag.length, end + startTag.length);
-        } else {
-            textarea.setSelectionRange(start + startTag.length, start + startTag.length);
-        }
-    }, 0);
-  };
 
   useEffect(() => {
     loadNote();
@@ -95,28 +69,11 @@ export default function Notes({ subjectId }: Props) {
           ) : null}
         </div>
 
-        <div className="flex gap-1.5 bg-white border border-slate-200 rounded-xl p-1 shadow-sm">
-          <button 
-            onClick={() => insertFormat('**', '**')}
-            className="p-1.5 hover:bg-slate-50 text-slate-500 hover:text-primary-600 rounded-lg transition-all" 
-            title="Bold"
-          >
-            <Bold size={16} />
-          </button>
-          <button 
-            onClick={() => insertFormat('_', '_')}
-            className="p-1.5 hover:bg-slate-50 text-slate-500 hover:text-primary-600 rounded-lg transition-all" 
-            title="Italic"
-          >
-            <Italic size={16} />
-          </button>
-          <button 
-            onClick={() => insertFormat('- ', '')}
-            className="p-1.5 hover:bg-slate-50 text-slate-500 hover:text-primary-600 rounded-lg transition-all" 
-            title="List"
-          >
-            <List size={16} />
-          </button>
+        <div className="flex gap-1.5 bg-white border border-slate-200 rounded-xl px-3 py-1.5 shadow-sm">
+          <p className="text-xs font-semibold text-slate-500 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary-400"></span>
+            {content.trim() ? content.trim().split(/\s+/).length : 0} words
+          </p>
         </div>
       </div>
 
