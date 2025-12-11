@@ -69,7 +69,7 @@ export default function Chat({ subjectId }: Props) {
   };
 
   return (
-    <div className="flex flex-col h-full bg-transparent relative">
+    <div className="flex flex-col h-full min-h-[500px] md:min-h-0 bg-transparent relative">
       <div className="px-5 py-4 bg-white/50 backdrop-blur-md border-b border-surface-200 flex items-center justify-between sticky top-0 z-10 transition-all">
          <div className="flex items-center gap-3">
              <div className="bg-gradient-to-br from-primary-100 to-primary-50 p-2.5 rounded-xl text-primary-600 shadow-sm border border-primary-100/50">

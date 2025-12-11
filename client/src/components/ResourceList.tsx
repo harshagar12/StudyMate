@@ -109,20 +109,20 @@ export default function ResourceList({ subjectId }: Props) {
 
   return (
     <div className="flex flex-col h-full bg-transparent text-slate-900">
-      <div className="px-5 py-4 border-b border-surface-200 flex flex-wrap gap-4 items-center justify-between sticky top-0 bg-white/50 backdrop-blur-md z-10 min-h-[82px] transition-all">
+      <div className="px-5 py-3 border-b border-surface-200 flex flex-nowrap gap-4 items-start justify-between sticky top-0 bg-white/50 backdrop-blur-md z-10 transition-all">
         {!showYoutubeInput ? (
           <>
-            <div className="min-w-[150px] animate-in fade-in slide-in-from-left-2 duration-300">
+            <div className="min-w-[100px] pt-2 animate-in fade-in slide-in-from-left-2 duration-300">
               <h2 className="text-lg font-bold text-slate-800 tracking-tight">Resources</h2>
               <p className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">{resources.length} items</p>
             </div>
             
-            <div className="flex flex-wrap gap-2.5 justify-end flex-1 animate-in fade-in slide-in-from-right-2 duration-300">
+            <div className="flex flex-col gap-2.5 justify-center flex-1 w-auto items-end animate-in fade-in slide-in-from-right-2 duration-300">
               <Button
                 onClick={() => setShowYoutubeInput(true)}
-                className="flex items-center gap-2 text-slate-600 bg-white hover:bg-red-50 hover:text-red-600 px-3.5 py-2.5 rounded-xl transition-all text-xs font-bold border border-slate-200 shadow-sm hover:shadow-md active:scale-95"
+                className="h-10 w-[130px] flex items-center justify-center gap-2 text-slate-600 bg-white hover:bg-red-50 hover:text-red-600 px-4 rounded-xl transition-all text-xs font-bold border border-slate-200 shadow-sm hover:shadow-md active:scale-95"
               >
-                <Youtube size={16} /> <span className="hidden sm:inline">Add Video</span>
+                <Youtube size={16} /> <span>Add Video</span>
               </Button>
               <input
                 type="file"
@@ -134,7 +134,7 @@ export default function ResourceList({ subjectId }: Props) {
               <Button
                 onClick={() => fileInputRef.current?.click()}
                 disabled={uploading}
-                className="flex items-center gap-2 bg-slate-900 text-white px-4 py-2.5 rounded-xl hover:bg-slate-800 text-xs font-bold transition-all disabled:opacity-70 shadow-lg shadow-slate-900/10 hover:shadow-xl active:scale-95"
+                className="h-10 w-[130px] flex items-center justify-center gap-2 bg-slate-900 text-white px-4 rounded-xl hover:bg-slate-800 text-xs font-bold transition-all disabled:opacity-70 shadow-lg shadow-slate-900/10 hover:shadow-xl active:scale-95 border border-transparent"
               >
                 {uploading ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />} 
                 {uploading ? 'Processing...' : 'Upload PDF'}

@@ -65,32 +65,31 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-6 space-y-6">
-        <div className="glass rounded-3xl px-6 py-5 flex items-center justify-between mb-6">
-          <div className="flex items-center gap-5">
-            <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 flex items-center justify-center text-white shadow-lg shadow-primary-500/20 transform hover:scale-105 transition-transform duration-300">
-              <GraduationCap size={32} strokeWidth={2.5} />
+      <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-4 md:py-6 space-y-4 md:space-y-6">
+        <div className="glass rounded-2xl md:rounded-3xl px-4 md:px-6 py-4 md:py-5 flex items-center justify-between mb-4 md:mb-6">
+          <div className="flex items-center gap-3 md:gap-5">
+            <div className="h-10 w-10 md:h-14 md:w-14 rounded-xl md:rounded-2xl bg-gradient-to-br from-primary-600 to-primary-700 flex items-center justify-center text-white shadow-lg shadow-primary-500/20 transform hover:scale-105 transition-transform duration-300">
+              <GraduationCap size={20} className="md:w-8 md:h-8" strokeWidth={2.5} />
             </div>
             <div>
-              <h1 className="font-extrabold text-3xl text-slate-900 tracking-tight leading-none mb-0.5">Study<span className="text-primary-600">Mate</span></h1>
-              <p className="text-xs font-bold text-slate-500 tracking-wide uppercase">Student Workspace</p>
+              <h1 className="font-extrabold text-xl md:text-3xl text-slate-900 tracking-tight leading-none mb-0.5">Study<span className="text-primary-600">Mate</span></h1>
+              <p className="text-[10px] md:text-xs font-bold text-slate-500 tracking-wide uppercase">Student Workspace</p>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <div className="text-right hidden sm:block">
-              <p className="text-sm font-semibold text-slate-900 truncate max-w-[180px]">{session?.user?.email}</p>
+              <p className="text-sm font-semibold text-slate-900 truncate max-w-[150px]">{session?.user?.email}</p>
             </div>
-            <div className="h-10 w-10 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-sm font-bold ring-2 ring-white shadow-sm">
+            <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xs md:text-sm font-bold ring-2 ring-white shadow-sm shrink-0">
               {session?.user?.email?.charAt(0).toUpperCase()}
             </div>
-            <div className="h-8 w-[1px] bg-slate-200 mx-1"></div>
+            <div className="h-6 md:h-8 w-[1px] bg-slate-200 mx-0.5 md:mx-1"></div>
             <Button
               onClick={() => signOut()}
-              className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-sm hover:shadow-md active:scale-95"
+              className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 p-2 md:px-4 md:py-2 rounded-lg md:rounded-xl text-sm font-semibold transition-all shadow-sm hover:shadow-md active:scale-95 flex items-center justify-center"
+              title="Sign out"
             >
-              <div className="flex items-center gap-2">
-                <LogOut size={16} /> <span className="hidden sm:inline">Sign out</span>
-              </div>
+                <LogOut size={16} /> <span className="hidden md:inline ml-2">Sign out</span>
             </Button>
           </div>
         </div>

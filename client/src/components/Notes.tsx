@@ -80,7 +80,7 @@ export default function Notes({ subjectId }: Props) {
   };
 
   return (
-    <div className="flex flex-col h-full bg-transparent relative">
+    <div className="flex flex-col h-full min-h-[500px] md:min-h-0 bg-transparent relative">
       <div className="px-6 py-4 bg-white/50 backdrop-blur-md border-b border-surface-200 flex items-center justify-between sticky top-0 z-10 transition-all">
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-bold text-slate-800 tracking-tight">Study Notes</h2>
