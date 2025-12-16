@@ -62,7 +62,15 @@ export default function ResourceList({ subjectId }: Props) {
       formData.append('file', file);
       formData.append('subjectId', subjectId);
       formData.append('title', file.name);
-      formData.append('type', 'pdf');
+      
+      // Determine type
+      let type = 'file';
+      if (file.type === 'application/pdf') {
+          type = 'pdf';
+      } else if (file.type.startsWith('image/')) {
+          type = 'image';
+      }
+      formData.append('type', type);
 
       await api.createResource(formData);
       loadResources();
@@ -90,6 +98,7 @@ export default function ResourceList({ subjectId }: Props) {
   const getIcon = (resource: Resource) => {
     switch (resource.type) {
       case 'pdf': return <FileText className="text-rose-500" size={20} />;
+      case 'image': return <FileText className="text-blue-500" size={20} />; // Or Image icon if available
       case 'youtube': 
       case 'youtube_playlist':
         if (isPlaylist(resource.url)) {
@@ -128,7 +137,7 @@ export default function ResourceList({ subjectId }: Props) {
                 type="file"
                 ref={fileInputRef}
                 className="hidden"
-                accept=".pdf"
+                // accept=".pdf" // Removed to allow all files
                 onChange={handleFileUpload}
               />
               <Button
@@ -137,7 +146,7 @@ export default function ResourceList({ subjectId }: Props) {
                 className="h-10 w-[130px] flex items-center justify-center gap-2 bg-slate-900 text-white px-4 rounded-xl hover:bg-slate-800 text-xs font-bold transition-all disabled:opacity-70 shadow-lg shadow-slate-900/10 hover:shadow-xl active:scale-95 border border-transparent"
               >
                 {uploading ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />} 
-                {uploading ? 'Processing...' : 'Upload PDF'}
+                {uploading ? 'Processing...' : 'Upload File'}
               </Button>
             </div>
           </>

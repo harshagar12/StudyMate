@@ -18,7 +18,7 @@ export interface Resource {
   id: string;
   subject_id: string;
   title: string;
-  type: 'pdf' | 'link' | 'youtube' | 'text' | 'youtube_playlist';
+  type: 'pdf' | 'link' | 'youtube' | 'text' | 'youtube_playlist' | 'image' | 'file';
   url: string;
   content_summary: string;
   created_at: string;

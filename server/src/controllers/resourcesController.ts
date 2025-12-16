@@ -19,8 +19,8 @@ export const createResource = async (req: AuthenticatedRequest, res: Response): 
     let content = '';
 
     // 1. Upload to Storage OR Handle YouTube
-    if (type === 'pdf' && file) {
-      // ... existing PDF logic ...
+    if (file) {
+      // Handle File Upload (PDF, Image, etc)
       const fileName = `${userId}/${Date.now()}_${file.originalname}`;
       
       const { error: uploadError } = await req.supabase!.storage
@@ -37,14 +37,21 @@ export const createResource = async (req: AuthenticatedRequest, res: Response): 
       
       url = publicUrl;
 
-      // Extract text
-      try {
-        content = await extractTextFromPDF(file.buffer);
-      } catch (e) {
-          console.error('PDF Parse Error:', e);
-          throw new Error('Failed to parse PDF');
+      // Extract text ONLY if it is a PDF
+      if (type === 'pdf') {
+          try {
+            content = await extractTextFromPDF(file.buffer);
+          } catch (e) {
+              console.error('PDF Parse Error (Non-fatal):', e);
+              // Non-fatal: Proceed without content
+              content = ''; 
+          }
+      } else {
+          // For images/other files, we don't have text content
+          content = '';
       }
-    } else if (type === 'youtube') {
+
+    } else if (type === 'youtube' || type === 'youtube_playlist') {
        
        const playlistId = extractPlaylistId(req.body.url);
        const videoId = extractVideoId(req.body.url);
